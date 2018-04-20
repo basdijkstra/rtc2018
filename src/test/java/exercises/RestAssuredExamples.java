@@ -20,32 +20,12 @@ import static org.hamcrest.Matchers.*;
 @RunWith(DataProviderRunner.class)
 public class RestAssuredExamples {
 
-    private static String myAuthenticationToken;
-
-    /*
-    @BeforeClass
-    public static void retrieveToken() {
-
-        myAuthenticationToken =
-
-            given().
-                auth().
-                preemptive().
-                basic("username", "password").
-            when().
-                get("https://my.secure/api").
-            then().
-                extract().
-                path("");
-    }
-    */
-
     @Test
     public void usePreviouslyStoredAuthToken() {
 
         given().
             auth().
-            oauth2(myAuthenticationToken).
+            oauth2("myAuthenticationToken").
         when().
             get("https://my.very.secure/api").
         then().
